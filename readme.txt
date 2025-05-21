@@ -8,6 +8,8 @@ Tested up to: 6.3.1
 Stable tag: 1.1.3
 License: GPL2
 
+Modified by danahutchins to look up attachment id from file name of first image if no post_parent relationship.
+
 Automatically sets the featured image to the first image uploaded into the post (any post type with thumbnail support). So easy like that...
 
 == Description ==

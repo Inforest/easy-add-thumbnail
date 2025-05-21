@@ -58,6 +58,21 @@ if ( function_exists( 'add_theme_support' ) ) {
 				// Add attachment ID.
 				add_post_meta( $post->ID, '_thumbnail_id', $attachment_values[0]->ID, true );
 
+			} else {
+				// Parse post content for first image tag
+				preg_match('/<img.+?src=[\'"]([^\'"]+)[\'"].*?>/i', $post->post_content, $matches);
+				
+				if (!empty($matches[1])) {
+					$image_url = $matches[1];
+					
+					// Get attachment ID from URL
+					$attachment_id = attachment_url_to_postid($image_url);
+					
+					if ($attachment_id) {
+						// Add the found image as featured image
+						add_post_meta($post->ID, '_thumbnail_id', $attachment_id, true);
+					}
+				}
 			}
 		}
 
